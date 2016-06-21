@@ -21,9 +21,8 @@ def grablinks(pageurl):
 		print "Working..."
 		req = br.click_link(url=link.url)
 		br2.open(req)
-		soup = BeautifulSoup(br2.response().read(),'lxml')
-		scripts = soup.find_all('script',{'type':'text/javascript'})
-		dllinks.append(str.replace(str.replace(re.search('var hqurl = \'.*\'',str(scripts[5])).group(0),"var hqurl =",""),"'",""))
+		dlpagetext = br2.response().read()
+		dllinks.append(str.replace(str.replace(re.search('var hqurl = \'.*\'',dlpagetext).group(0),"var hqurl =",""),"'",""))
 		print "Grabbed link "+str(grabbed+1)
 		grabbed = grabbed + 1
 	return dllinks
