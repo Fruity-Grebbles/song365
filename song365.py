@@ -71,7 +71,10 @@ if (__name__ == "__main__"):
 			links = (grablinks(sys.argv[1]))
 			
 		for link in links:
-			download(link)
+			try:
+				download(link)
+			except Exception:
+				print "Failed to download '" + link + "'"
 		print "Done."
 
 	else:
